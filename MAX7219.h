@@ -1,0 +1,61 @@
+#ifndef __MAX7219_H__
+#define __MAX7219_H__
+
+#include "main.h"
+
+/*Define the peripheral you want to use*/
+//#define SEGMENT			0
+#define LED_MATRIX	1
+
+extern SPI_HandleTypeDef hspi1;
+// Define pin
+#define CS_PORT	GPIOA
+#define CS_PIN	GPIO_PIN_4
+// Define address register
+#define DECMODE			0x09
+#define INTENSITY		0x0A
+#define SCAN_LIM		0x0B
+#define SHUDOWN			0x0C
+#define DIS_TEST		0x0F
+// Decode Mode
+#define NODEC		0x00	// Not decode for all digits
+#define DEC0		0x01	// Decode for digit 0
+#define DEC03		0x0F	// Decode for digit from 0 - 3
+#define DECALL	0xFF	// Decode for all digits
+// Scan mode
+#define DIS0	0x00	// Display digit 0 only
+#define DIS1	0x01	// Display digit 0 and 1
+#define DIS2	0x02	// Display digit 0 - 2
+#define DIS3	0x03	// Display digit 0 - 3
+#define DIS4	0x04	// Display digit 0 - 4
+#define DIS5	0x05	// Display digit 0 - 5
+#define DIS6	0x06	// Display digit 0 - 6
+#define DIS7	0x07	// Display digit 0 - 7
+
+/*
+	Call this array to file main.c. If you don't call, you cannot display the character
+	uint8_t character[] = {
+		0x00, 0x07, 0x05, 0x05, 0x05, 0x05, 0x05, 0x07, // 0
+		0x00, 0x01, 0x03, 0x05, 0x01, 0x01, 0x01, 0x01, // 1
+		0x00, 0x07, 0x01, 0x01, 0x07, 0x04, 0x04, 0x07, // 2
+		0x00, 0x07, 0x01, 0x01, 0x07, 0x01, 0x01, 0x07,	// 3
+		0x00, 0x05, 0x05, 0x05, 0x07, 0x01, 0x01, 0x01,	// 4
+		0x00, 0x07, 0x04, 0x04, 0x07, 0x01, 0x01, 0x07,	// 5
+		0x00, 0x07, 0x04, 0x04, 0x07, 0x05, 0x05, 0x07, // 6
+		0x00, 0x07, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // 7
+		0x00, 0x07, 0x05, 0x05, 0x07, 0x05, 0x05, 0x07, // 8
+		0x00, 0x07, 0x05, 0x05, 0x07, 0x01, 0x01, 0x07	// 9
+	};
+	
+	uint8_t special_character[] = {
+		0x00, 0x66, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18 // heart character
+	};
+	
+	Besides, you can adjust array above with any character you want
+*/
+
+void sendData(uint8_t address, uint8_t value);
+void initMAX7219(uint8_t decodeMode, uint8_t intensity, uint8_t scan_limit);
+void displayACharacter(uint8_t Character, uint8_t* array_character);
+void shiftingACharacter(uint8_t Character, uint8_t* array_character, uint8_t shift);
+#endif
