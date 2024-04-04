@@ -29,13 +29,13 @@ int main(void)
        /*displayACharacter(0, special_character);
        // shiftingACharacter(5, character, 1);*/
 
-		displayNumber(235);
+		displayNumber(235, 0);
 	   	HAL_Delay(2000);
-		displayNumber(235.6);
+		displayNumber(235.6, 0);
 		HAL_Delay(2000);
-		displayNumber(-235);
+		displayNumber(-235, 0);
 	   	HAL_Delay(2000);
-		displayNumber(-235.6);
+		displayNumber(-235.6, 0);
 		HAL_Delay(2000);
     }
     

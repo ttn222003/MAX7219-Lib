@@ -83,7 +83,7 @@ extern SPI_HandleTypeDef hspi1;
 void sendData(uint8_t address, uint8_t value);
 void initMAX7219(uint8_t decodeMode, uint8_t intensity, uint8_t scan_limit);
 #ifdef SEGMENT
-void displayNumber(float number);
+void displayNumber(float number, uint8_t count);
 #endif
 
 #ifdef LED_MATRIX

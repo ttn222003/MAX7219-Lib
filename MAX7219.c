@@ -54,15 +54,13 @@ void initMAX7219(uint8_t decode_mode, uint8_t intensity, uint8_t scan_limit)
 	Function: Display a number on segment LED
 	Parameter:
 	- number: The number you want to display. It can be the positive or negative integer/float
+	- count: The first index that you want to display from
 	Return: None
 */
-void displayNumber(float number)
+void displayNumber(float number, uint8_t count)
 {
 	int16_t integer_part = (int16_t)number;
 	int16_t decimal_part = (int16_t)((number - (float)integer_part) * 1000); // Maximu of figure in decimal part is three
-	uint16_t temp_integer_part = integer_part;
-	uint16_t temp_decimal_part = decimal_part;
-	uint8_t count = 0;
 	uint8_t sign;
 	
 	if(number < 0)
